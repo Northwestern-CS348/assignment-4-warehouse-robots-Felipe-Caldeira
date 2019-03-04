@@ -1,15 +1,10 @@
-﻿(define (domain warehouse)
-	(:requirements :typing)
-	(:types robot pallette - bigobject
-        	location shipment order saleitem)
-
   	(:predicates
-    	(ships ?s - shipment ?o - order)
-    	(orders ?o - order ?si - saleitem)
-    	(unstarted ?s - shipment)
-    	(started ?s - shipment)
-    	(complete ?s - shipment)
-    	(includes ?s - shipment ?si - saleitem)
+    	(ships ?s - shipment ?o - order) - Shipment ?s ships to order ?o
+    	(orders ?o - order ?si - saleitem) - Saleitem ?si is part of order ?o
+    	(unstarted ?s - shipment) - Shipment ?s is unstarted
+    	(started ?s - shipment) - Shipment ?s is started
+    	(complete ?s - shipment) - Shipment ?s is complete
+    	(includes ?s - shipment ?si - saleitem) - Shipment ?s includes ?si
 
     	(free ?r - robot)
     	(has ?r - robot ?p - pallette)
@@ -24,6 +19,7 @@
 
     	(contains ?p - pallette ?si - saleitem)
   )
+
 
    (:action startShipment
       :parameters (?s - shipment ?o - order ?l - location)
@@ -54,4 +50,20 @@
       :precondition (and (packing-at ?s ?l) (started ?s) (not (complete ?s)) (ships ?s ?o) )
       :effect (and (not (started ?s)) (complete ?s) (available ?l) (not (ships ?s ?o)) (not (packing-at ?s ?l))) ;not ships?
    )
-)
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
